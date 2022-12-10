@@ -1,6 +1,12 @@
-﻿namespace Template.Domain.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Template.Domain.Entities.Usr
 {
-    public class User : Entity
+    public class Users : Entity
     {
         public string Name { get; set; }
         public string Email { get; set; }

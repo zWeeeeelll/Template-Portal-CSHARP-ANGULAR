@@ -9,9 +9,9 @@ using Template.CrossCutting.Auth.ViewModels;
 using Template.CrossCutting.ExceptionHandler.Extensions;
 using Template.CrossCutting.Notification.Interfaces;
 using Template.CrossCutting.Notification.ViewModels;
-using Template.Domain.Entities;
+using Template.Domain.Entities.Usr;
 using Template.Domain.Interfaces;
-using Profile = Template.Domain.Entities.Profile;
+using Profile = Template.Domain.Entities.Usr.Profile;
 
 namespace Template.Application.Services
 {
@@ -36,7 +36,7 @@ namespace Template.Application.Services
 
         public void ActivateByEmail(string email, string code)
         {
-            User _user = repository.GetByEmailAndCode(email, code);
+            Users _user = repository.GetByEmailAndCode(email, code);
             if (_user == null)
                 throw new ApiException("Email/Code not found", HttpStatusCode.NotFound);
 
@@ -47,7 +47,7 @@ namespace Template.Application.Services
 
         public bool ActivateUser(int userId)
         {
-            User _user = GetByIdPrivate(userId);
+            Users _user = GetByIdPrivate(userId);
             _user.IsAuthorised = true;
 
             repository.Update(_user);
@@ -56,7 +56,7 @@ namespace Template.Application.Services
 
         public UserResponseAuthenticateViewModel Authenticate(UserRequestAuthenticateViewModel user)
         {
-            User _user = repository.GetByEmailAndPassword(user.Email, UtilsService.EncryptPassword(user.Password));
+            Users _user = repository.GetByEmailAndPassword(user.Email, UtilsService.EncryptPassword(user.Password));
             if (_user == null)
                 throw new ApiException("Email/Password not found", HttpStatusCode.NotFound);
 
@@ -76,7 +76,7 @@ namespace Template.Application.Services
             ValidationService.ValidEmail(user.Email);
             ValidationService.ValidPassword(user.Password, user.PasswordConfirm);
 
-            User _user = repository.GetByEmailAndCode(user.Email, user.Code);
+            Users _user = repository.GetByEmailAndCode(user.Email, user.Code);
             if (_user == null)
                 throw new ApiException("Email/Code not found", HttpStatusCode.NotFound);
 
@@ -91,7 +91,7 @@ namespace Template.Application.Services
 
         public bool DeactivateUser(int userId)
         {
-            User _user = GetByIdPrivate(userId);
+            Users _user = GetByIdPrivate(userId);
             _user.IsAuthorised = false;
 
             repository.Update(_user);
@@ -101,7 +101,7 @@ namespace Template.Application.Services
         public bool ForgotPassword(string email)
         {
             ValidationService.ValidEmail(email);
-            User _user = repository.GetByEmail(email);
+            Users _user = repository.GetByEmail(email);
             if (_user == null)
                 throw new ApiException("Email not found", HttpStatusCode.NotFound);
 
@@ -116,7 +116,7 @@ namespace Template.Application.Services
 
         public UserViewModel GetById(int userId)
         {
-            User _user = GetByIdPrivate(userId);
+            Users _user = GetByIdPrivate(userId);
 
             return mapper.Map<UserViewModel>(_user);
         }
@@ -135,7 +135,7 @@ namespace Template.Application.Services
 
             try
             {
-                User _user = mapper.Map<User>(user);
+                Users _user = mapper.Map<Users>(user);
                 _user.ProfileId = _profile.Id;
                 _user.Code = UtilsService.GenerateCode(8);
 
@@ -160,7 +160,7 @@ namespace Template.Application.Services
 
         public bool Put(UserUpdateAccount user)
         {
-            User _user = GetByIdPrivate(user.Id);
+            Users _user = GetByIdPrivate(user.Id);
             _user.Name = user.Name;
 
             repository.Update(_user);
@@ -168,9 +168,9 @@ namespace Template.Application.Services
         }
 
 
-        private User GetByIdPrivate(int userId)
+        private Users GetByIdPrivate(int userId)
         {
-            User _user = repository.GetById(userId);
+            Users _user = repository.GetById(userId);
             if (_user == null)
                 throw new ApiException("User not found", HttpStatusCode.NotFound);
 

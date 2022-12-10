@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Template.Data.Context;
 
@@ -11,9 +12,10 @@ using Template.Data.Context;
 namespace Template.Data.Migrations
 {
     [DbContext(typeof(PortalContext))]
-    partial class PortalContextModelSnapshot : ModelSnapshot
+    [Migration("20221209040208_Initial2")]
+    partial class Initial2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -982,41 +984,6 @@ namespace Template.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Module", "Usr");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 0,
-                            Icon = "dashboard.png",
-                            IsActive = true,
-                            Name = "Dashboard",
-                            Sequence = 1,
-                            URL = "dashboard",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedUser = 0,
-                            Icon = "users.png",
-                            IsActive = true,
-                            Name = "Users",
-                            Sequence = 2,
-                            URL = "users",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedUser = 0,
-                            Icon = "accounts.png",
-                            IsActive = true,
-                            Name = "Account",
-                            Sequence = 3,
-                            URL = "accounts",
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Usr.ModuleProfile", b =>
@@ -1032,33 +999,6 @@ namespace Template.Data.Migrations
                     b.HasIndex("ProfileId");
 
                     b.ToTable("ModuleProfile", "Usr");
-
-                    b.HasData(
-                        new
-                        {
-                            ModuleId = 1,
-                            ProfileId = 1
-                        },
-                        new
-                        {
-                            ModuleId = 2,
-                            ProfileId = 1
-                        },
-                        new
-                        {
-                            ModuleId = 3,
-                            ProfileId = 1
-                        },
-                        new
-                        {
-                            ModuleId = 1,
-                            ProfileId = 2
-                        },
-                        new
-                        {
-                            ModuleId = 3,
-                            ProfileId = 2
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Usr.Profile", b =>
@@ -1098,26 +1038,6 @@ namespace Template.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Profile", "Usr");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            IsDefault = false,
-                            Name = "Admin",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            IsDefault = true,
-                            Name = "User",
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Usr.User", b =>
@@ -1170,35 +1090,7 @@ namespace Template.Data.Migrations
 
                     b.HasIndex("ProfileId");
 
-                    b.ToTable("Users", "Usr");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 10, 8, 28, 36, 16, DateTimeKind.Local).AddTicks(2335),
-                            CreatedUser = 1,
-                            Email = "admin@template.com",
-                            IsActive = true,
-                            IsAuthorised = true,
-                            Name = "Admin",
-                            Password = "8D66A53A381493BEC08DA23CEF5A43767F20A42C",
-                            ProfileId = 1,
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 10, 8, 28, 36, 16, DateTimeKind.Local).AddTicks(2353),
-                            CreatedUser = 1,
-                            Email = "user@template.com",
-                            IsActive = true,
-                            IsAuthorised = true,
-                            Name = "User",
-                            Password = "8D66A53A381493BEC08DA23CEF5A43767F20A42C",
-                            ProfileId = 2,
-                            UpdatedUser = 0
-                        });
+                    b.ToTable("User", "Usr");
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Invent.Inventory", b =>

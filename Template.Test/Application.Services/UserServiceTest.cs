@@ -8,12 +8,12 @@ using Template.Application.ViewModels.Users;
 using Template.CrossCutting.Auth.Interfaces;
 using Template.CrossCutting.ExceptionHandler.Extensions;
 using Template.CrossCutting.Notification.Interfaces;
-using Template.Domain.Entities;
+using Template.Domain.Entities.Usr;
 using Template.Domain.Interfaces;
 
 namespace Template.Test.Application.Services
 {
-	[TestClass]
+    [TestClass]
 	public class UserServiceTest
 	{
 		private readonly Mock<IUserRepository> userRepository = new Mock<IUserRepository>();
@@ -136,14 +136,14 @@ namespace Template.Test.Application.Services
 		//[TestMethod] - Commented because Mock for AutoMapper is not working.
 		public void SaveWithDefaultProfile()
 		{
-			profileRepository.Setup(x => x.GetDefault()).Returns(new Domain.Entities.Profile
+			profileRepository.Setup(x => x.GetDefault()).Returns(new Domain.Entities.Usr.Profile
 			{
 				Id = 1,
 				Name = "Default"
 			});
 
-			mapper.Setup(m => m.Map<UserRequestCreateAccountViewModel, User>(It.IsAny<UserRequestCreateAccountViewModel>()))
-					.Returns(new User());		
+			mapper.Setup(m => m.Map<UserRequestCreateAccountViewModel, Users>(It.IsAny<UserRequestCreateAccountViewModel>()))
+					.Returns(new Users());		
 
 			UserRequestCreateAccountViewModel userRequest = new UserRequestCreateAccountViewModel
 			{

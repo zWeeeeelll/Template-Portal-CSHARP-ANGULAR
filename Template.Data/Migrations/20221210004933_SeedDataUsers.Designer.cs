@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Template.Data.Context;
 
@@ -11,9 +12,10 @@ using Template.Data.Context;
 namespace Template.Data.Migrations
 {
     [DbContext(typeof(PortalContext))]
-    partial class PortalContextModelSnapshot : ModelSnapshot
+    [Migration("20221210004933_SeedDataUsers")]
+    partial class SeedDataUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1170,13 +1172,13 @@ namespace Template.Data.Migrations
 
                     b.HasIndex("ProfileId");
 
-                    b.ToTable("Users", "Usr");
+                    b.ToTable("User", "Usr");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 10, 8, 28, 36, 16, DateTimeKind.Local).AddTicks(2335),
+                            CreatedDate = new DateTime(2022, 12, 9, 21, 49, 30, 246, DateTimeKind.Local).AddTicks(6893),
                             CreatedUser = 1,
                             Email = "admin@template.com",
                             IsActive = true,
@@ -1189,7 +1191,7 @@ namespace Template.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 10, 8, 28, 36, 16, DateTimeKind.Local).AddTicks(2353),
+                            CreatedDate = new DateTime(2022, 12, 9, 21, 49, 30, 246, DateTimeKind.Local).AddTicks(6906),
                             CreatedUser = 1,
                             Email = "user@template.com",
                             IsActive = true,

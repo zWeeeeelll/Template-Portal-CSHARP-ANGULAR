@@ -1,15 +1,15 @@
 ﻿using System.Linq;
-using Template.Domain.Entities;
+using Template.Domain.Entities.Usr;
 
 namespace Template.Domain.Interfaces
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<Users>
 	{
-		User GetByEmailAndPassword(string email, string password);
-		User GetByEmail(string email);
-		User GetByEmailAndCode(string email, string code);
-		IQueryable<User> GetByProfileId(int profileId);
-		User GetById(int userId);
-		IQueryable<User> Get();
+		Users GetByEmailAndPassword(string email, string password);
+		Users GetByEmail(string email);
+		Users GetByEmailAndCode(string email, string code);
+		IQueryable<Users> GetByProfileId(int profileId);
+		Users GetById(int userId);
+		IQueryable<Users> Get();
 	}
 }

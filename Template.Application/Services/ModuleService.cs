@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Template.Application.Interfaces;
 using Template.Application.ViewModels.Modules;
-using Template.Domain.Entities;
+using Template.Domain.Entities.Usr;
 using Template.Domain.Interfaces;
 
 namespace Template.Application.Services
 {
-	public class ModuleService: IModuleService
+    public class ModuleService: IModuleService
 	{
 		private readonly IMapper mapper;
 		private readonly IModuleRepository repository;
