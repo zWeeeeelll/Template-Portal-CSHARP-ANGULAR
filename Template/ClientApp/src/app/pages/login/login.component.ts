@@ -63,8 +63,7 @@ export class LoginComponent {
     this.app.loading = true;
     this.userService.authenticate(this.user).subscribe(data => {
       localStorage.setItem(this.app.storageName, JSON.stringify(data));
-      this.router.navigateByUrl("/dashboard");
-      this.menu.getModules();
+      this.router.navigateByUrl("/dashboard/general");
       this.app.loading = false;
     }, err => {
         this.app.loading = false;

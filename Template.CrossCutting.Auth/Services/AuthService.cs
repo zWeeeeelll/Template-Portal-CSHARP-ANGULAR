@@ -42,7 +42,7 @@ namespace Template.CrossCutting.Auth.Services
                     Email = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value,
                     Name = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value,
                     Profile = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Role).Value,
-                    IsAuthenticated = _httpContextAccessor.HttpContext.User.Identity.IsAuthenticated,
+                    IsAuthenticated = _httpContextAccessor.HttpContext.User.Identity.IsAuthenticated
                 };
             }
             catch (Exception)
@@ -61,6 +61,7 @@ namespace Template.CrossCutting.Auth.Services
                     new Claim(ClaimTypes.NameIdentifier, user.Email),
                     new Claim(ClaimTypes.Name, user.Name),
                     new Claim(ClaimTypes.Role, user.Profile)
+
                 }, authenticationType);
             }
             catch (Exception)

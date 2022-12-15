@@ -13,12 +13,15 @@ namespace Template.Controllers
 	[Route("api/[controller]"), ApiController]
 	public class ModulesController : ControllerBase
 	{
-        private readonly IModuleService service;
+        private readonly IModuleService moduleService;
+        private readonly IMenuService menuService;
+
         private readonly IAuthService authService;
 
-        public ModulesController(IModuleService service, IAuthService authService)
+        public ModulesController(IModuleService moduleService, IMenuService menuService, IAuthService authService)
         {
-            this.service = service;
+            this.moduleService = moduleService;
+            this.menuService = menuService;
             this.authService = authService;
         }
 
@@ -31,7 +34,7 @@ namespace Template.Controllers
                 if (_user == null)
                     return Unauthorized();
 
-                return Ok(service.GetByProfile(int.Parse(_user.Profile)));
+                return Ok(menuService.GetMenuByProfile(int.Parse(_user.Profile)));
             }
             catch (Exception)
             {

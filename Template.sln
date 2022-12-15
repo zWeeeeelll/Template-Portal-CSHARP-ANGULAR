@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30717.126
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template", "Template\Template.csproj", "{AAAEE455-3AFE-42B1-A75F-01D40333E718}"
 EndProject
@@ -35,7 +35,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.CrossCutting.Excep
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Tests", "0-Tests", "{8D9A23D4-8F34-456A-83A8-7ED3A0A8ECD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Test", "Template.Test\Template.Test.csproj", "{D6D198EE-7102-4D1D-9E6B-06589CBBDDDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Test", "Template.Test\Template.Test.csproj", "{D6D198EE-7102-4D1D-9E6B-06589CBBDDDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3-Seeds", "4.3-Seeds", "{32578FAA-89A1-4853-AA10-008D686697BE}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\TEMPLATES\TERCEIROS\sql-paises-estados-cidades-master\cidade.json = ..\..\..\..\TEMPLATES\TERCEIROS\sql-paises-estados-cidades-master\cidade.json
+		..\..\..\..\TEMPLATES\TERCEIROS\sql-paises-estados-cidades-master\estado.json = ..\..\..\..\TEMPLATES\TERCEIROS\sql-paises-estados-cidades-master\estado.json
+		..\..\..\..\TEMPLATES\TERCEIROS\sql-paises-estados-cidades-master\pais.json = ..\..\..\..\TEMPLATES\TERCEIROS\sql-paises-estados-cidades-master\pais.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,6 +107,7 @@ Global
 		{ED4D6C68-C037-43F0-A332-0B34586A22B5} = {13779FA3-D71B-4254-9EB3-944FE5DFB998}
 		{5480AFB8-E206-41CA-9C80-201691C2DA91} = {13779FA3-D71B-4254-9EB3-944FE5DFB998}
 		{D6D198EE-7102-4D1D-9E6B-06589CBBDDDF} = {8D9A23D4-8F34-456A-83A8-7ED3A0A8ECD0}
+		{32578FAA-89A1-4853-AA10-008D686697BE} = {623CDBC3-7FF7-4222-B35D-BB98FAF1968C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01FA4D8E-CF4C-4782-A21D-935EA047D218}

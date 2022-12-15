@@ -1,3 +1,4 @@
+import { RegistrationsProductsComponent } from './pages/registrations/registrations.products.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AccessComponent } from './pages/access/access.component';
@@ -7,6 +8,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppMainComponent } from './app.main.component';
 import { AuthGuard } from './guards/auth-guard';
+import { ConfigurationImportsComponent } from './pages/configuration/imports/configuration.imports.component';
+import { ConfigurationProductsComponent } from './pages/configuration/products/configuration.produtcs.component';
  
 const routes: Routes = [ 
   { path: '', component: AppMainComponent,
@@ -15,9 +18,18 @@ const routes: Routes = [
       loadChildren: () => import('../app/pages/home/home.module').then(m => m.HomeModule),
       canActivate: [AuthGuard] 
     },
-    { path: 'dashboard', component: DashboardComponent, 
+    { path: 'dashboard/general', component: DashboardComponent, 
     loadChildren: () => import('../app/pages/dashboard/dashboard.module').then(m => m.DashboardModule ),
       canActivate: [AuthGuard] 
+    },
+    { path: 'registrations/products', component: RegistrationsProductsComponent,
+      loadChildren: () => import('./pages/registrations/registrations.products.module').then(m => m.RegistrationsProductsModule )
+    },
+    { path: 'config/imports', component: ConfigurationImportsComponent,
+      loadChildren: () => import('./pages/configuration/imports/configuration.imports.module').then(m => m.ConfigurationImportsModule )
+    },
+    { path: 'config/products', component: ConfigurationProductsComponent,
+      loadChildren: () => import('./pages/configuration/products/configuration.produtcs.module').then(m => m.ConfigurationProductsModule )
     }
   ]},
   { path: 'error', component: ErrorComponent, canActivate: [AuthGuard] },

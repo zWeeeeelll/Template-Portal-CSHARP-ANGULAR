@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, AfterVie
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Module } from './api/models/module';
 import { ErrorService } from './service/database/error.service';
-import { ModuleService } from './service/database/module.service';
+import { ModuleService } from './service/database/menu.service';
 import { map, Observable, of } from "rxjs";
 
 @Component({
@@ -23,84 +23,23 @@ import { map, Observable, of } from "rxjs";
     `,
     changeDetection: ChangeDetectionStrategy.Default
 })
-export class AppMenuComponent {
-
-    model$ = this.moduleService.getModules().pipe(
-        map(data => {
-            let model = [];
-            if (localStorage.getItem(this.app.storageName)) {
-                data.forEach(item => {
-                   model.push(
-                   {
-                        label: '',
-                        items:[
-                            {label: item.name, icon: '', routerLink: [item.url]}
-                        ]
-                    }
-                );
-            })         
-            }else{
-            var _privateModule = this._modulesDefault;
-            if (!_privateModule)
-                this.router.navigateByUrl('/landing');
-                model = this._modulesDefault;
-                this.app.usuarioLogado = false;
-            }    
-        return model;
-        })
-    );
+export class AppMenuComponent  {
 
     _modules: any[];
-    _modulesDefault: Module[] = [
-      { name: 'Login', url: '/login', icon: 'login', sequence: 1, id: 1},
-      { name: 'Landing', url: '/landing', icon: 'landing', sequence: 2, id: 2},
-      { name: 'Register', url: '/register', icon: 'register', sequence: 3, id: 3},
-      { name: 'ChangePassword', url: '/changepassword', icon: 'register', sequence: 3, id: 3},
-      { name: 'Error', url: '/error', icon: 'register', sequence: 3, id: 3},
-      { name: 'Notfound', url: '/notfound', icon: 'register', sequence: 3, id: 3},
-      { name: 'Access', url: '/access', icon: 'register', sequence: 3, id: 3},
+    _modulesDefault: any[] = [
+      { name: 'Login', url: '/login'},
+      { name: 'Landing', url: '/landing'},
+      { name: 'Register', url: '/register'},
+      { name: 'ChangePassword', url: '/changepassword'},
+      { name: 'Error', url: '/error'},
+      { name: 'Notfound', url: '/notfound'},
+      { name: 'Access', url: '/access'}
     ];
 
     constructor(private moduleService: ModuleService, private router: Router,private errorService: ErrorService, private app: AppComponent,private cdr: ChangeDetectorRef) { 
-        router.events.subscribe(event => {
-            if (event instanceof NavigationEnd){
-                if (localStorage.getItem(this.app.storageName)) {
-                    this.moduleService.getModules().pipe(
-                        map(data => {
-                            let model = [];
-                                data.forEach(item => {
-                                   model.push(
-                                   {
-                                        label: '',
-                                        items:[
-                                            {label: item.name, icon: '', routerLink: [item.url]}
-                                        ]
-                                    }
-                                );
-                            })         
-                            return model;
-                           })
-                    ).subscribe(data => {
-                      this._modules = data;
-                      this.app.usuarioLogado = true;
-                    }, err => {
-                      this.router.navigateByUrl("/login");
-                      this.errorService.validateError(err);
-                      this._modules = this._modulesDefault;
-                      this.app.usuarioLogado = false;
-                    });
-                  }else{
-                    var _privateModule = this._modulesDefault.find(mod => mod.url==event.url);
-                    this.app.usuarioLogado = false;
-                    if (!_privateModule)
-                    this.router.navigateByUrl('/landing');
-                    this._modules = this._modulesDefault;
-                  }
-              } 
-           }
-        );
-        
+        this.getModules()
     } 
+
 
     getModules() {
         this.router.events.subscribe(event => {
@@ -109,16 +48,29 @@ export class AppMenuComponent {
                 this.moduleService.getModules().pipe(
                     map(data => {
                         let model = [];
-                            data.forEach(item => {
-                               model.push(
-                               {
-                                    label: '',
-                                    items:[
-                                        {label: item.name, icon: '', routerLink: [item.url]}
-                                    ]
-                                }
-                            );
-                        })         
+                        data.forEach(item => {
+                            var menuItems = [];
+                            for (let i = 0; i < item.moduleItem.length; i++) {
+                             const menuItem = item.moduleItem[i];
+                             var menus = [];
+                             let urls = [];
+                             for (let j = 0; j < menuItem.moduleMenu.length; j++) {
+                                 const menu = menuItem.moduleMenu[j];
+                                 menus[j] = {label: menu.name, icon: menu.icon, routerLink: [menu.url]};
+                                 urls.push(menu.url);
+                             }
+
+
+                            menuItems[i] = {label: menuItem.name, icon: menuItem.icon, items: menus, routerLink: urls, routerLinkActiveOptions: { exact: true }}
+                            }
+                            
+                            model.push(
+                            {
+                                label: item.name,
+                                items: menuItems
+                            }
+                         );
+                     })  
                         return model;
                        })
                 ).subscribe(data => {
@@ -131,11 +83,14 @@ export class AppMenuComponent {
                   this.app.usuarioLogado = false;
                 });
               }else{
-                var _privateModule = this._modulesDefault.find(mod => mod.url==event.url);
+                var _privateModule = this._modulesDefault.find(mod => mod.url ==event.url);
+
                 this.app.usuarioLogado = false;
-                if (!_privateModule)
-                this.router.navigateByUrl('/landing');
-                this._modules = this._modulesDefault;
+                if (!_privateModule) {
+                    this.router.navigateByUrl('/landing');
+                    this._modules = this._modulesDefault;
+                }
+
               }
            }
             

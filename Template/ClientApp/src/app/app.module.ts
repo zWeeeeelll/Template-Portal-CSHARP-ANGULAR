@@ -25,12 +25,12 @@ import { EmptyComponent } from './pages/empty/empty.component';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {RippleModule} from 'primeng/ripple';
 import { HomeComponent } from './pages/home/home.component';
-import {ToastModule} from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { UserService } from './service/database/user.service';
 import { AlertService } from './service/database/alert.service';
-import { ModuleService } from './service/database/module.service';
+import { ModuleService } from './service/database/menu.service';
 import { NgxLoadingModule } from "ngx-loading";
+import { ProductService } from './service/mock/productservice';
 
 
 @NgModule({
@@ -55,10 +55,9 @@ import { NgxLoadingModule } from "ngx-loading";
     SplitButtonModule,
     SpeedDialModule,
     RippleModule,
-    ToastModule,
     NgxLoadingModule.forRoot({})
     ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, MenuService, ConfigService, UserService, MessageService, ErrorService, AlertService, ModuleService, AppMenuComponent],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, MenuService, ConfigService, UserService, MessageService, ErrorService, AlertService, ModuleService, AppMenuComponent, ProductService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

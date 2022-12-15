@@ -20,11 +20,10 @@ namespace Template.CrossCutting.IoC
             services.AddScoped<ITokenService, TokenService>();
 
             #region Services
-
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<IModuleService, ModuleService>();
-
+            services.AddScoped<IMenuService, MenuService>();
             #endregion
 
             #region Repositories
@@ -32,6 +31,8 @@ namespace Template.CrossCutting.IoC
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProfileRepository, ProfileRepository>();
             services.AddScoped<IModuleRepository, ModuleRepository>();
+            services.AddScoped<IModuleItemRepository, ModuleItemRepository>();
+            services.AddScoped<IModuleMenuRepository, ModuleMenuRepository>();
 
             #endregion
         }

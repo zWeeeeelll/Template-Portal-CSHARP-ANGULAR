@@ -40,7 +40,6 @@ namespace Template.CrossCutting.Auth.Services
                 };
 
                 SecurityToken _generatedToken = _tokenHandler.CreateToken(_tokenDescriptor);
-
                 return _tokenHandler.WriteToken(_generatedToken);
             }
             catch (Exception)
