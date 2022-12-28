@@ -1,8 +1,9 @@
+import { ProfileService } from './service/database/profile.service';
 import { ErrorService } from './service/database/error.service';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { Interceptor } from './service/database/config/app.interceptor.module';
-import { LoginComponent } from './pages/login/login.component';
-import { ErrorComponent } from './pages/error/error.component';
+import { LoginComponent } from './pages/access/login/login.component';
+import { ErrorComponent } from './pages/utils/error/error.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,7 +21,7 @@ import { ConfigService } from './service/app.config.service';
 import { MenuService } from './service/app.menu.service';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
-import { EmptyComponent } from './pages/empty/empty.component';
+import { EmptyComponent } from './pages/utils/empty/empty.component';
 
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {RippleModule} from 'primeng/ripple';
@@ -57,7 +58,7 @@ import { ProductService } from './service/mock/productservice';
     RippleModule,
     NgxLoadingModule.forRoot({})
     ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, MenuService, ConfigService, UserService, MessageService, ErrorService, AlertService, ModuleService, AppMenuComponent, ProductService, ConfirmationService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, MenuService, ConfigService, UserService, MessageService, ErrorService, AlertService, ModuleService, AppMenuComponent, ProductService, ConfirmationService, ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

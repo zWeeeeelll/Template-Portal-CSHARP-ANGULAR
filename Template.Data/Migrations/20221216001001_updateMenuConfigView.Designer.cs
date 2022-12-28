@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Template.Data.Context;
 
@@ -11,9 +12,10 @@ using Template.Data.Context;
 namespace Template.Data.Migrations
 {
     [DbContext(typeof(PortalContext))]
-    partial class PortalContextModelSnapshot : ModelSnapshot
+    [Migration("20221216001001_updateMenuConfigView")]
+    partial class updateMenuConfigView
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,18 +66,6 @@ namespace Template.Data.Migrations
                     b.HasIndex("InventoryTypeId");
 
                     b.ToTable("Inventory", "Inventory");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 0,
-                            Description = "Teste",
-                            InventoryTypeId = 1,
-                            IsActive = true,
-                            Title = "Geral",
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Invent.InventoryItem", b =>
@@ -131,21 +121,6 @@ namespace Template.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("InventoryItem", "Inventory");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Barcode = "7889566423",
-                            BuyPrice = 80.319999999999993,
-                            CreatedUser = 0,
-                            InventoryId = 1,
-                            IsActive = true,
-                            ProductId = 1,
-                            Quantity = 4,
-                            SellPrice = 100.23,
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Invent.InventoryType", b =>
@@ -182,32 +157,6 @@ namespace Template.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("InventoryType", "Inventory");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Entrada",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Ajuste",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Periódico",
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Location.Address", b =>
@@ -271,22 +220,6 @@ namespace Template.Data.Migrations
                     b.HasIndex("StateId");
 
                     b.ToTable("Address", "Location");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CityId = 4444,
-                            CountryId = 1,
-                            CreatedUser = 0,
-                            District = "Centro",
-                            IsActive = true,
-                            Number = "36",
-                            PostalCode = "88390000",
-                            StateId = 24,
-                            Street = "1971",
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Location.City", b =>
@@ -70968,10 +70901,7 @@ namespace Template.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
+                    b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedData")
@@ -70985,21 +70915,6 @@ namespace Template.Data.Migrations
                     b.HasIndex("AddressId");
 
                     b.ToTable("Company", "Person");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AddressId = 1,
-                            BusinessName = "Genérico",
-                            CreatedUser = 0,
-                            Email = "isaacestudo1999@gmail.com",
-                            IsActive = true,
-                            Name = "Genérico",
-                            PhoneCode = "47",
-                            PhoneNumber = "999002349",
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Person.Contact", b =>
@@ -71013,7 +70928,7 @@ namespace Template.Data.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CompanyId")
+                    b.Property<int?>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
@@ -71058,22 +70973,6 @@ namespace Template.Data.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Contact", "Person");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AddressId = 1,
-                            CompanyId = 1,
-                            CreatedUser = 0,
-                            Email = "isaacestudo1999@gmail.com",
-                            IsActive = true,
-                            Name = "Genérico",
-                            Nickname = "Genérico",
-                            PhoneCode = "47",
-                            PhoneNumber = "999002349",
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Production.Product", b =>
@@ -71123,18 +71022,6 @@ namespace Template.Data.Migrations
                     b.HasIndex("ProductSubCategoryId");
 
                     b.ToTable("Product", "Production");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Genérico",
-                            ProductCategoryId = 1,
-                            ProductSubCategoryId = 1,
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Production.ProductCategory", b =>
@@ -71171,16 +71058,6 @@ namespace Template.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductCategory", "Production");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Geral",
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Production.ProductSubCategory", b =>
@@ -71208,9 +71085,6 @@ namespace Template.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdatedData")
                         .HasColumnType("datetime2");
 
@@ -71219,20 +71093,7 @@ namespace Template.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductCategoryId");
-
                     b.ToTable("ProductSubCategory", "Production");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Geral",
-                            ProductCategoryId = 1,
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.Annotation", b =>
@@ -71242,9 +71103,6 @@ namespace Template.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AnnotationTypeId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
                         .IsRequired()
@@ -71263,7 +71121,10 @@ namespace Template.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
-                    b.Property<int>("OpportunityId")
+                    b.Property<int>("NoteTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OpportunityId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -71277,7 +71138,7 @@ namespace Template.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AnnotationTypeId");
+                    b.HasIndex("NoteTypeId");
 
                     b.HasIndex("OpportunityId");
 
@@ -71354,40 +71215,6 @@ namespace Template.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Concept", "Sales");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Redes sociais",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Em campo",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Email",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Telefonema",
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.Opportunity", b =>
@@ -71433,7 +71260,7 @@ namespace Template.Data.Migrations
                     b.Property<DateTime>("NextRelationshipDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("OpportunityTypeId")
+                    b.Property<int>("OpportunityTitleId")
                         .HasColumnType("int");
 
                     b.Property<int>("OrderId")
@@ -71468,7 +71295,7 @@ namespace Template.Data.Migrations
 
                     b.HasIndex("ContactId");
 
-                    b.HasIndex("OpportunityTypeId");
+                    b.HasIndex("OpportunityTitleId");
 
                     b.HasIndex("OrderId");
 
@@ -71477,29 +71304,6 @@ namespace Template.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Opportunity", "Sales");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CompanyId = 1,
-                            ConceptId = 1,
-                            ContactId = 1,
-                            CreatedUser = 1,
-                            Description = "Genérica",
-                            Email = "isaacestudo1999@gmail.com",
-                            ForecastDate = new DateTime(2023, 7, 4, 22, 9, 43, 181, DateTimeKind.Local).AddTicks(2553),
-                            IsActive = true,
-                            NextRelationshipDate = new DateTime(2023, 3, 26, 22, 9, 43, 181, DateTimeKind.Local).AddTicks(2519),
-                            OpportunityTypeId = 1,
-                            OrderId = 1,
-                            PhoneCode = "47",
-                            PhoneNumber = "999002349",
-                            StageId = 1,
-                            UpdatedUser = 0,
-                            UserId = 1,
-                            ValidityDate = new DateTime(2023, 12, 16, 22, 9, 43, 181, DateTimeKind.Local).AddTicks(2537)
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.OpportunityType", b =>
@@ -71536,40 +71340,6 @@ namespace Template.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OpportunityType", "Sales");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Lead",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Venda",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Re-venda",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Recaptação",
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.Order", b =>
@@ -71603,15 +71373,6 @@ namespace Template.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Order", "Sales");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 1,
-                            IsActive = true,
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.OrderProduct", b =>
@@ -71639,13 +71400,7 @@ namespace Template.Data.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedData")
@@ -71661,19 +71416,6 @@ namespace Template.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderProduct", "Sales");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 1,
-                            IsActive = true,
-                            OrderId = 1,
-                            Price = 232.34,
-                            ProductId = 1,
-                            Quantity = 2,
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.Stage", b =>
@@ -71710,56 +71452,6 @@ namespace Template.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Stage", "Sales");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Oportunidade",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Negociação",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Análise",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Produção",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Finalizada",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedUser = 0,
-                            IsActive = true,
-                            Name = "Cancelada",
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Usr.Module", b =>
@@ -71964,7 +71656,7 @@ namespace Template.Data.Migrations
                         {
                             Id = 8,
                             CreatedUser = 0,
-                            Icon = "pi pi-cart-plus",
+                            Icon = "pi pi-send",
                             IsActive = true,
                             ModuleId = 3,
                             Name = "Oportunidades",
@@ -71975,7 +71667,7 @@ namespace Template.Data.Migrations
                         {
                             Id = 9,
                             CreatedUser = 0,
-                            Icon = "pi pi-gift",
+                            Icon = "pi pi-dollar",
                             IsActive = true,
                             ModuleId = 3,
                             Name = "Pedidos",
@@ -72146,12 +71838,12 @@ namespace Template.Data.Migrations
                         {
                             Id = 10,
                             CreatedUser = 0,
-                            Icon = "pi pi-pencil",
-                            IsActive = true,
-                            ModuleItemId = 5,
-                            Name = "Gerenciar",
+                            Icon = "pi pi-eye",
+                            IsActive = false,
+                            ModuleItemId = 6,
+                            Name = "Visualizar",
                             Sequence = 10,
-                            URL = "inventory/manager",
+                            URL = "products/list",
                             UpdatedUser = 0
                         },
                         new
@@ -72159,11 +71851,11 @@ namespace Template.Data.Migrations
                             Id = 11,
                             CreatedUser = 0,
                             Icon = "pi pi-eye",
-                            IsActive = false,
-                            ModuleItemId = 6,
+                            IsActive = true,
+                            ModuleItemId = 7,
                             Name = "Visualizar",
                             Sequence = 11,
-                            URL = "products/list",
+                            URL = "clients/list",
                             UpdatedUser = 0
                         },
                         new
@@ -72172,10 +71864,10 @@ namespace Template.Data.Migrations
                             CreatedUser = 0,
                             Icon = "pi pi-eye",
                             IsActive = true,
-                            ModuleItemId = 7,
+                            ModuleItemId = 8,
                             Name = "Visualizar",
                             Sequence = 12,
-                            URL = "clients/list",
+                            URL = "opportunities/list",
                             UpdatedUser = 0
                         },
                         new
@@ -72184,21 +71876,9 @@ namespace Template.Data.Migrations
                             CreatedUser = 0,
                             Icon = "pi pi-eye",
                             IsActive = true,
-                            ModuleItemId = 8,
-                            Name = "Visualizar",
-                            Sequence = 13,
-                            URL = "opportunities/list",
-                            UpdatedUser = 0
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CreatedUser = 0,
-                            Icon = "pi pi-eye",
-                            IsActive = true,
                             ModuleItemId = 9,
                             Name = "Visualizar",
-                            Sequence = 14,
+                            Sequence = 13,
                             URL = "orders/list",
                             UpdatedUser = 0
                         });
@@ -72375,7 +72055,7 @@ namespace Template.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 16, 22, 9, 43, 159, DateTimeKind.Local).AddTicks(1562),
+                            CreatedDate = new DateTime(2022, 12, 15, 21, 9, 55, 834, DateTimeKind.Local).AddTicks(8612),
                             CreatedUser = 1,
                             Email = "admin@template.com",
                             IsActive = true,
@@ -72388,7 +72068,7 @@ namespace Template.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 16, 22, 9, 43, 159, DateTimeKind.Local).AddTicks(1577),
+                            CreatedDate = new DateTime(2022, 12, 15, 21, 9, 55, 834, DateTimeKind.Local).AddTicks(8624),
                             CreatedUser = 1,
                             Email = "user@template.com",
                             IsActive = true,
@@ -72401,7 +72081,7 @@ namespace Template.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 12, 16, 22, 9, 43, 159, DateTimeKind.Local).AddTicks(1579),
+                            CreatedDate = new DateTime(2022, 12, 15, 21, 9, 55, 834, DateTimeKind.Local).AddTicks(8625),
                             CreatedUser = 1,
                             Email = "seller@template.com",
                             IsActive = true,
@@ -72519,15 +72199,11 @@ namespace Template.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Template.Domain.Entities.Person.Company", "Company")
+                    b.HasOne("Template.Domain.Entities.Person.Company", null)
                         .WithMany("Contacts")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("CompanyId");
 
                     b.Navigation("Address");
-
-                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Production.Product", b =>
@@ -72549,34 +72225,19 @@ namespace Template.Data.Migrations
                     b.Navigation("ProductSubCategory");
                 });
 
-            modelBuilder.Entity("Template.Domain.Entities.Production.ProductSubCategory", b =>
-                {
-                    b.HasOne("Template.Domain.Entities.Production.ProductCategory", "ProductCategory")
-                        .WithMany()
-                        .HasForeignKey("ProductCategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ProductCategory");
-                });
-
             modelBuilder.Entity("Template.Domain.Entities.Sales.Annotation", b =>
                 {
-                    b.HasOne("Template.Domain.Entities.Sales.AnnotationType", "AnnotationType")
+                    b.HasOne("Template.Domain.Entities.Sales.AnnotationType", "NoteType")
                         .WithMany()
-                        .HasForeignKey("AnnotationTypeId")
+                        .HasForeignKey("NoteTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Template.Domain.Entities.Sales.Opportunity", "Opportunity")
-                        .WithMany("Annotations")
-                        .HasForeignKey("OpportunityId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                    b.HasOne("Template.Domain.Entities.Sales.Opportunity", null)
+                        .WithMany("Note")
+                        .HasForeignKey("OpportunityId");
 
-                    b.Navigation("AnnotationType");
-
-                    b.Navigation("Opportunity");
+                    b.Navigation("NoteType");
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.Opportunity", b =>
@@ -72599,9 +72260,9 @@ namespace Template.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Template.Domain.Entities.Sales.OpportunityType", "OpportunityType")
+                    b.HasOne("Template.Domain.Entities.Sales.OpportunityType", "OpportunityTitle")
                         .WithMany()
-                        .HasForeignKey("OpportunityTypeId")
+                        .HasForeignKey("OpportunityTitleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -72629,7 +72290,7 @@ namespace Template.Data.Migrations
 
                     b.Navigation("Contact");
 
-                    b.Navigation("OpportunityType");
+                    b.Navigation("OpportunityTitle");
 
                     b.Navigation("Order");
 
@@ -72721,7 +72382,7 @@ namespace Template.Data.Migrations
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.Opportunity", b =>
                 {
-                    b.Navigation("Annotations");
+                    b.Navigation("Note");
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.Order", b =>

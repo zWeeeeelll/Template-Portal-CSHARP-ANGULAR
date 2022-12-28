@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
-import { ConfigService } from '../../service/app.config.service';
 import { AppConfig } from 'src/app/api/models/appconfig';
+import { ConfigService } from 'src/app/service/app.config.service';
  
 @Component({
-    templateUrl: './dashboard.component.html',
+    templateUrl: './dashboard.general.component.html',
 })
-export class DashboardComponent implements OnInit {
+export class DashboardGeneralComponent implements OnInit {
 
     items: MenuItem[];
 

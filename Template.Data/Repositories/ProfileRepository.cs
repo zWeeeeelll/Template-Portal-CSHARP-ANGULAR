@@ -1,4 +1,6 @@
-﻿using Template.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using Template.Data.Context;
 using Template.Domain.Entities.Usr;
 using Template.Domain.Interfaces;
 
@@ -13,5 +15,15 @@ namespace Template.Data.Repositories
 		{
 			return Find(x => x.IsDefault);
 		}
-	}
+
+        public IQueryable<Profile> Get()
+        {
+            return Query(x => x.IsActive);
+        }
+
+        public Profile GetById(int profileId)
+        {   
+            return Find(x => x.Id == profileId);
+        }
+    }
 }

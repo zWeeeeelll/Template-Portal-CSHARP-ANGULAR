@@ -181,5 +181,22 @@ namespace Template.Controllers
                 throw;
             }
         }
+
+
+        [HttpPut("updateaccess")]
+        public IActionResult UpdateAccess(UserUpdateAccess user)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                return Ok(service.UpdateAccess(user));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

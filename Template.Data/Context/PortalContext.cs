@@ -128,12 +128,12 @@ namespace Template.Data.Context
                 new ModuleItem { Id = 1, Name = "Dashboards", ModuleId = 1, Icon = "pi pi-chart-pie", IsActive = true, Sequence = 1 },
                 new ModuleItem { Id = 2, Name = "Usuários", ModuleId = 1, Icon = "pi pi-users", IsActive = true, Sequence = 2 },
                 new ModuleItem { Id = 3, Name = "Configurações", ModuleId = 1, Icon = "pi pi-cog", IsActive = true, Sequence = 3 },
-                new ModuleItem { Id = 4, Name = "Cadastro", ModuleId = 2, Icon = "pi pi-save", IsActive = true, Sequence = 4 },
+                new ModuleItem { Id = 4, Name = "Cadastro", ModuleId = 2, Icon = "pi pi-save", IsActive = false, Sequence = 4 },
                 new ModuleItem { Id = 5, Name = "Inventário", ModuleId = 2, Icon = "pi pi-shopping-bag", IsActive = true, Sequence = 5 },
-                new ModuleItem { Id = 6, Name = "Produtos", ModuleId = 2, Icon = "pi pi-shopping-cart", IsActive = true, Sequence = 6 },
+                new ModuleItem { Id = 6, Name = "Produtos", ModuleId = 2, Icon = "pi pi-shopping-cart", IsActive = false, Sequence = 6 },
                 new ModuleItem { Id = 7, Name = "Empresas", ModuleId = 3, Icon = "pi pi-building", IsActive = true, Sequence = 7 },
-                new ModuleItem { Id = 8, Name = "Oportunidades", ModuleId = 3, Icon = "pi pi-send", IsActive = true, Sequence = 8 },
-                new ModuleItem { Id = 9, Name = "Pedidos", ModuleId = 3, Icon = "pi pi-dollar", IsActive = true, Sequence = 9 },
+                new ModuleItem { Id = 8, Name = "Oportunidades", ModuleId = 3, Icon = "pi pi-cart-plus", IsActive = true, Sequence = 8 },
+                new ModuleItem { Id = 9, Name = "Pedidos", ModuleId = 3, Icon = "pi pi-gift", IsActive = true, Sequence = 9 },
             };
 
 
@@ -146,18 +146,19 @@ namespace Template.Data.Context
                 new ModuleMenu { Id = 5, Name = "Produtos", ModuleItemId = 3, Icon = "pi pi-shopping-cart", URL = "config/products", IsActive = true, Sequence = 5 },
                 new ModuleMenu { Id = 6, Name = "Importações", ModuleItemId = 3, Icon = "pi pi-file-import", URL = "config/imports", IsActive = false, Sequence = 6 },
                 new ModuleMenu { Id = 7, Name = "Stages", ModuleItemId = 3, Icon = "pi pi-directions", URL = "config/stages", IsActive = true, Sequence = 7 },
-                new ModuleMenu { Id = 8, Name = "Produtos", ModuleItemId = 4, Icon = "pi pi-shopping-cart", URL = "registrations/products", IsActive = true, Sequence = 8 },
+                new ModuleMenu { Id = 8, Name = "Produtos", ModuleItemId = 4, Icon = "pi pi-shopping-cart", URL = "registrations/products", IsActive = false, Sequence = 8 },
                 new ModuleMenu { Id = 9, Name = "Produtos", ModuleItemId = 5, Icon = "pi pi-shopping-cart", URL = "inventory/products", IsActive = true, Sequence = 9 },
-                new ModuleMenu { Id = 10, Name = "Visualizar", ModuleItemId = 6, Icon = "pi pi-eye", URL = "products/list", IsActive = true, Sequence = 10 },
-                new ModuleMenu { Id = 11, Name = "Visualizar", ModuleItemId = 7, Icon = "pi pi-eye", URL = "clients/list", IsActive = true, Sequence = 11 },
-                new ModuleMenu { Id = 12, Name = "Visualizar", ModuleItemId = 8, Icon = "pi pi-eye", URL = "opportunities/list", IsActive = true, Sequence = 12 },
-                new ModuleMenu { Id = 13, Name = "Visualizar", ModuleItemId = 9, Icon = "pi pi-eye", URL = "orders/list", IsActive = true, Sequence = 13 },
+                new ModuleMenu { Id = 10, Name = "Gerenciar", ModuleItemId = 5, Icon = "pi pi-pencil", URL = "inventory/manager", IsActive = true, Sequence = 10 },
+                new ModuleMenu { Id = 11, Name = "Visualizar", ModuleItemId = 6, Icon = "pi pi-eye", URL = "products/list", IsActive = false, Sequence = 11 },
+                new ModuleMenu { Id = 12, Name = "Visualizar", ModuleItemId = 7, Icon = "pi pi-eye", URL = "clients/list", IsActive = true, Sequence = 12 },
+                new ModuleMenu { Id = 13, Name = "Visualizar", ModuleItemId = 8, Icon = "pi pi-eye", URL = "opportunities/list", IsActive = true, Sequence = 13 },
+                new ModuleMenu { Id = 14, Name = "Visualizar", ModuleItemId = 9, Icon = "pi pi-eye", URL = "orders/list", IsActive = true, Sequence = 14 },
             };
 
             Profile[] _profiles = new[]
             {
                 new Profile { Id = 1, Name = "Admin", IsActive = true },
-                new Profile { Id = 2, Name = "User", IsActive = true, IsDefault = true },
+                new Profile { Id = 2, Name = "User", IsActive = true },
                 new Profile { Id = 3, Name = "Seller", IsActive = true, IsDefault = true }
             };
 
@@ -179,14 +180,42 @@ namespace Template.Data.Context
                 new ModuleProfile{ ProfileId = 1, ModuleId = 1 },
                 new ModuleProfile{ ProfileId = 1, ModuleId = 2 },
                 new ModuleProfile{ ProfileId = 1, ModuleId = 3 },
-
                 new ModuleProfile{ ProfileId = 2, ModuleId = 2 },
                 new ModuleProfile{ ProfileId = 2, ModuleId = 3 },
-
                 new ModuleProfile{ ProfileId = 3, ModuleId = 3 },
-
             };
 
+            ProductCategory[] _productCategory = new[]
+            {
+                new ProductCategory { Id = 1, Name = "Geral", IsActive = true },
+            };
+
+            ProductSubCategory[] _productSubCategory = new[]
+            {
+                new ProductSubCategory { Id = 1, Name = "Geral", ProductCategoryId = 1, IsActive = true },
+            };
+
+            Product[] _product = new[]
+            {
+                new Product { Id = 1, Name = "Genérico", ProductCategoryId = 1, ProductSubCategoryId = 1, IsActive = true },
+            };
+
+            InventoryType[] _inventoryType = new[]
+            {
+                new InventoryType { Id = 1, Name = "Entrada", IsActive = true },
+                new InventoryType { Id = 2, Name = "Ajuste", IsActive = true },
+                new InventoryType { Id = 3, Name = "Periódico", IsActive = true }
+            };
+
+            Inventory[] _inventory= new[]
+            {
+                new Inventory { Id = 1, InventoryTypeId = 1, Title = "Geral", Description = "Teste", IsActive = true }
+            };
+
+            InventoryItem[] _inventoryItem = new[]
+            {
+                new InventoryItem { Id = 1, ProductId = 1, SellPrice = 100.23, BuyPrice = 80.32, Barcode = "7889566423", Quantity = 4, InventoryId = 1, IsActive = true }
+            };
 
             List<City> _cities = new List<City>();
             using (StreamReader r = new StreamReader("Z:\\TEMPLATES\\TERCEIROS\\sql-paises-estados-cidades-master\\cidade.json"))
@@ -210,7 +239,62 @@ namespace Template.Data.Context
                 _countries = JsonSerializer.Deserialize<List<Country>>(json);
             }
 
-        
+            Address[] _address = new[]
+            {
+                new Address { Id = 1, Street = "1971", Number = "36", District = "Centro", PostalCode = "88390000", CountryId = 1, StateId = 24, CityId = 4444, IsActive = true }
+            };
+
+            Company[] _company = new[]
+            {
+                new Company { Id = 1, Name = "Genérico",  BusinessName = "Genérico", PhoneCode = "47", PhoneNumber = "999002349", Email = "isaacestudo1999@gmail.com", AddressId = 1, IsActive = true }
+            };
+
+            Contact[] _contact = new[]
+            {
+                new Contact { Id = 1, Name = "Genérico", CompanyId = 1, Nickname = "Genérico", PhoneCode = "47", PhoneNumber = "999002349", Email = "isaacestudo1999@gmail.com", AddressId = 1, IsActive = true }
+            };
+
+            Stage[] _stage = new[]
+            {
+                new Stage { Id = 1, Name = "Oportunidade", IsActive = true },
+                new Stage { Id = 2, Name = "Negociação", IsActive = true },
+                new Stage { Id = 3, Name = "Análise", IsActive = true },
+                new Stage { Id = 4, Name = "Produção", IsActive = true },
+                new Stage { Id = 5, Name = "Finalizada", IsActive = true },
+                new Stage { Id = 6, Name = "Cancelada", IsActive = true }
+            };
+
+            Concept[] _concept = new[]
+            {
+                new Concept { Id = 1, Name = "Redes sociais", IsActive = true },
+                new Concept { Id = 2, Name = "Em campo", IsActive = true },
+                new Concept { Id = 3, Name = "Email", IsActive = true },
+                new Concept { Id = 4, Name = "Telefonema", IsActive = true }
+            };
+
+            OpportunityType[] _opportunityType = new[]
+            {
+                new OpportunityType { Id = 1, Name = "Lead", IsActive = true },
+                new OpportunityType { Id = 2, Name = "Venda", IsActive = true },
+                new OpportunityType { Id = 3, Name = "Re-venda", IsActive = true },
+                new OpportunityType { Id = 4, Name = "Recaptação", IsActive = true },
+            };
+
+            Opportunity[] _opportunity = new[]
+            {
+                new Opportunity { Id = 1, Description = "Genérica", NextRelationshipDate = DateTime.Now.AddDays(100), ValidityDate = DateTime.Now.AddMonths(12), ForecastDate = DateTime.Now.AddDays(200), PhoneCode = "47", PhoneNumber = "999002349", Email = "isaacestudo1999@gmail.com", ConceptId = 1, OpportunityTypeId = 1, UserId = 1, StageId = 1, OrderId = 1, CompanyId = 1, ContactId = 1, CreatedUser = 1,  IsActive = true }
+            };
+
+            OrderProduct[] _orderProduct = new[]
+            {
+                new OrderProduct { Id = 1, ProductId = 1, Quantity = 2, OrderId = 1, Price = 232.34, CreatedUser = 1,  IsActive = true }
+            };
+
+            Order[] _order = new[]
+            {
+                new Order { Id = 1, CreatedUser = 1,  IsActive = true }
+            };
+
             modelBuilder.Entity<Module>().HasData(_modules);
             modelBuilder.Entity<ModuleItem>().HasData(_moduleItems);
             modelBuilder.Entity<ModuleMenu>().HasData(_moduleMenus);
@@ -220,6 +304,21 @@ namespace Template.Data.Context
             modelBuilder.Entity<City>().HasData(_cities);
             modelBuilder.Entity<State>().HasData(_states);
             modelBuilder.Entity<Country>().HasData(_countries);
+            modelBuilder.Entity<InventoryType>().HasData(_inventoryType);
+            modelBuilder.Entity<ProductCategory>().HasData(_productCategory);
+            modelBuilder.Entity<ProductSubCategory>().HasData(_productSubCategory);
+            modelBuilder.Entity<Product>().HasData(_product);
+            modelBuilder.Entity<Inventory>().HasData(_inventory);
+            modelBuilder.Entity<InventoryItem>().HasData(_inventoryItem);
+            modelBuilder.Entity<Address>().HasData(_address);
+            modelBuilder.Entity<Company>().HasData(_company);
+            modelBuilder.Entity<Contact>().HasData(_contact);
+            modelBuilder.Entity<Stage>().HasData(_stage);
+            modelBuilder.Entity<Concept>().HasData(_concept);
+            modelBuilder.Entity<OpportunityType>().HasData(_opportunityType);
+            modelBuilder.Entity<Opportunity>().HasData(_opportunity);
+            modelBuilder.Entity<OrderProduct>().HasData(_orderProduct);
+            modelBuilder.Entity<Order>().HasData(_order);
         }
 
         private ModelBuilder ApplyGlobalStandards(ModelBuilder builder)

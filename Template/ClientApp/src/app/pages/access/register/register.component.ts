@@ -1,5 +1,5 @@
-import { AppConfig } from './../../api/models/appconfig';
-import { ConfigService } from './../../service/app.config.service';
+import { AppConfig } from '../../../api/models/appconfig';
+import { ConfigService } from '../../../service/app.config.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/database/user.service';

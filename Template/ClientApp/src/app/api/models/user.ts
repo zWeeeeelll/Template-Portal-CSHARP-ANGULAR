@@ -1,8 +1,9 @@
+import { Profile } from './profile';
 export class User {
     id?: number;
     name?: string;
     email?: string;
-    profile?: string;
+    profile?: Profile;
   
     constructor() { }
   }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Template.Data.Context;
 
@@ -11,9 +12,10 @@ using Template.Data.Context;
 namespace Template.Data.Migrations
 {
     [DbContext(typeof(PortalContext))]
-    partial class PortalContextModelSnapshot : ModelSnapshot
+    [Migration("20221217010802_UpdataDataTables34323342323")]
+    partial class UpdataDataTables34323342323
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71488,9 +71490,9 @@ namespace Template.Data.Migrations
                             CreatedUser = 1,
                             Description = "Genérica",
                             Email = "isaacestudo1999@gmail.com",
-                            ForecastDate = new DateTime(2023, 7, 4, 22, 9, 43, 181, DateTimeKind.Local).AddTicks(2553),
+                            ForecastDate = new DateTime(2023, 7, 4, 22, 7, 56, 643, DateTimeKind.Local).AddTicks(7820),
                             IsActive = true,
-                            NextRelationshipDate = new DateTime(2023, 3, 26, 22, 9, 43, 181, DateTimeKind.Local).AddTicks(2519),
+                            NextRelationshipDate = new DateTime(2023, 3, 26, 22, 7, 56, 643, DateTimeKind.Local).AddTicks(7766),
                             OpportunityTypeId = 1,
                             OrderId = 1,
                             PhoneCode = "47",
@@ -71498,7 +71500,7 @@ namespace Template.Data.Migrations
                             StageId = 1,
                             UpdatedUser = 0,
                             UserId = 1,
-                            ValidityDate = new DateTime(2023, 12, 16, 22, 9, 43, 181, DateTimeKind.Local).AddTicks(2537)
+                            ValidityDate = new DateTime(2023, 12, 16, 22, 7, 56, 643, DateTimeKind.Local).AddTicks(7780)
                         });
                 });
 
@@ -72375,7 +72377,7 @@ namespace Template.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 16, 22, 9, 43, 159, DateTimeKind.Local).AddTicks(1562),
+                            CreatedDate = new DateTime(2022, 12, 16, 22, 7, 56, 622, DateTimeKind.Local).AddTicks(3453),
                             CreatedUser = 1,
                             Email = "admin@template.com",
                             IsActive = true,
@@ -72388,7 +72390,7 @@ namespace Template.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 16, 22, 9, 43, 159, DateTimeKind.Local).AddTicks(1577),
+                            CreatedDate = new DateTime(2022, 12, 16, 22, 7, 56, 622, DateTimeKind.Local).AddTicks(3466),
                             CreatedUser = 1,
                             Email = "user@template.com",
                             IsActive = true,
@@ -72401,7 +72403,7 @@ namespace Template.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 12, 16, 22, 9, 43, 159, DateTimeKind.Local).AddTicks(1579),
+                            CreatedDate = new DateTime(2022, 12, 16, 22, 7, 56, 622, DateTimeKind.Local).AddTicks(3468),
                             CreatedUser = 1,
                             Email = "seller@template.com",
                             IsActive = true,
@@ -72582,19 +72584,19 @@ namespace Template.Data.Migrations
             modelBuilder.Entity("Template.Domain.Entities.Sales.Opportunity", b =>
                 {
                     b.HasOne("Template.Domain.Entities.Person.Company", "Company")
-                        .WithMany()
+                        .WithMany("Opportunities")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Template.Domain.Entities.Sales.Concept", "Concept")
-                        .WithMany()
+                        .WithMany("Opportunities")
                         .HasForeignKey("ConceptId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Template.Domain.Entities.Person.Contact", "Contact")
-                        .WithMany()
+                        .WithMany("Opportunities")
                         .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -72612,7 +72614,7 @@ namespace Template.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Template.Domain.Entities.Sales.Stage", "Stage")
-                        .WithMany()
+                        .WithMany("Opportunities")
                         .HasForeignKey("StageId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -72717,6 +72719,18 @@ namespace Template.Data.Migrations
             modelBuilder.Entity("Template.Domain.Entities.Person.Company", b =>
                 {
                     b.Navigation("Contacts");
+
+                    b.Navigation("Opportunities");
+                });
+
+            modelBuilder.Entity("Template.Domain.Entities.Person.Contact", b =>
+                {
+                    b.Navigation("Opportunities");
+                });
+
+            modelBuilder.Entity("Template.Domain.Entities.Sales.Concept", b =>
+                {
+                    b.Navigation("Opportunities");
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.Opportunity", b =>
@@ -72727,6 +72741,11 @@ namespace Template.Data.Migrations
             modelBuilder.Entity("Template.Domain.Entities.Sales.Order", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Template.Domain.Entities.Sales.Stage", b =>
+                {
+                    b.Navigation("Opportunities");
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Usr.Module", b =>

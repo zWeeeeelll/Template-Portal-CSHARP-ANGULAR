@@ -1,7 +1,7 @@
-import { AppComponent } from './../../app.component';
+import { AppComponent } from '../../../app.component';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ConfigService } from '../../service/app.config.service';
-import { AppConfig } from '../../api/models/appconfig';
+import { ConfigService } from '../../../service/app.config.service';
+import { AppConfig } from '../../../api/models/appconfig';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 @Component({

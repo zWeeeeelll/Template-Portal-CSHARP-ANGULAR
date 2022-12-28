@@ -9,5 +9,6 @@ namespace Template.Domain.Entities.Sales
     public class Stage : Entity
     {
         public string Name { get; set; }
+
     }
 }

@@ -15,5 +15,6 @@ namespace Template.Application.Interfaces
         void ActivateByEmail(string email, string code);
         List<UserViewModel> Get();
         bool Put(UserUpdateAccount user);
+        bool UpdateAccess(UserUpdateAccess user);
     }
 }

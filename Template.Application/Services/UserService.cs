@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using Template.Application.Interfaces;
+using Template.Application.ViewModels.Profiles;
 using Template.Application.ViewModels.Users;
 using Template.CrossCutting.Auth.Interfaces;
 using Template.CrossCutting.Auth.ViewModels;
@@ -166,6 +167,20 @@ namespace Template.Application.Services
             repository.Update(_user);
             return true;
         }
+
+        public bool UpdateAccess(UserUpdateAccess user)
+        {
+            Users _user = GetByIdPrivate(user.Id);
+            Profile _profile = profileRepository.GetById(user.ProfileId);
+            _user.Profile = _profile;
+            _user.Name = user.Name;
+            _user.ProfileId = user.ProfileId;
+            _user.Email = user.Email;
+
+            repository.Update(_user);
+            return true;
+        }
+
 
 
         private Users GetByIdPrivate(int userId)

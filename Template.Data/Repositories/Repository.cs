@@ -135,9 +135,9 @@ namespace Template.Data.Repositories
             try
             {
                 var entry = context.Entry(model);
-
+                
                 DbSet.Attach(model);
-
+                
                 entry.State = EntityState.Modified;
 
                 return Save() > 0;
@@ -159,7 +159,7 @@ namespace Template.Data.Repositories
                     var _entry = context.Entry(model);
 
                     DbSet.Attach(model);
-
+                   
                     _entry.State = EntityState.Modified;
                 }
                 else

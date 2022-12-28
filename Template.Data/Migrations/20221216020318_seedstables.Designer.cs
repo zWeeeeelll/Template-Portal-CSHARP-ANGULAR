@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Template.Data.Context;
 
@@ -11,9 +12,10 @@ using Template.Data.Context;
 namespace Template.Data.Migrations
 {
     [DbContext(typeof(PortalContext))]
-    partial class PortalContextModelSnapshot : ModelSnapshot
+    [Migration("20221216020318_seedstables")]
+    partial class seedstables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71433,7 +71435,7 @@ namespace Template.Data.Migrations
                     b.Property<DateTime>("NextRelationshipDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("OpportunityTypeId")
+                    b.Property<int>("OpportunityTitleId")
                         .HasColumnType("int");
 
                     b.Property<int>("OrderId")
@@ -71468,7 +71470,7 @@ namespace Template.Data.Migrations
 
                     b.HasIndex("ContactId");
 
-                    b.HasIndex("OpportunityTypeId");
+                    b.HasIndex("OpportunityTitleId");
 
                     b.HasIndex("OrderId");
 
@@ -71477,29 +71479,6 @@ namespace Template.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Opportunity", "Sales");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CompanyId = 1,
-                            ConceptId = 1,
-                            ContactId = 1,
-                            CreatedUser = 1,
-                            Description = "Genérica",
-                            Email = "isaacestudo1999@gmail.com",
-                            ForecastDate = new DateTime(2023, 7, 4, 22, 9, 43, 181, DateTimeKind.Local).AddTicks(2553),
-                            IsActive = true,
-                            NextRelationshipDate = new DateTime(2023, 3, 26, 22, 9, 43, 181, DateTimeKind.Local).AddTicks(2519),
-                            OpportunityTypeId = 1,
-                            OrderId = 1,
-                            PhoneCode = "47",
-                            PhoneNumber = "999002349",
-                            StageId = 1,
-                            UpdatedUser = 0,
-                            UserId = 1,
-                            ValidityDate = new DateTime(2023, 12, 16, 22, 9, 43, 181, DateTimeKind.Local).AddTicks(2537)
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.OpportunityType", b =>
@@ -71603,15 +71582,6 @@ namespace Template.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Order", "Sales");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 1,
-                            IsActive = true,
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.OrderProduct", b =>
@@ -71639,13 +71609,7 @@ namespace Template.Data.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedData")
@@ -71661,19 +71625,6 @@ namespace Template.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderProduct", "Sales");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedUser = 1,
-                            IsActive = true,
-                            OrderId = 1,
-                            Price = 232.34,
-                            ProductId = 1,
-                            Quantity = 2,
-                            UpdatedUser = 0
-                        });
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.Stage", b =>
@@ -72375,7 +72326,7 @@ namespace Template.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 16, 22, 9, 43, 159, DateTimeKind.Local).AddTicks(1562),
+                            CreatedDate = new DateTime(2022, 12, 15, 23, 3, 12, 316, DateTimeKind.Local).AddTicks(837),
                             CreatedUser = 1,
                             Email = "admin@template.com",
                             IsActive = true,
@@ -72388,7 +72339,7 @@ namespace Template.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 16, 22, 9, 43, 159, DateTimeKind.Local).AddTicks(1577),
+                            CreatedDate = new DateTime(2022, 12, 15, 23, 3, 12, 316, DateTimeKind.Local).AddTicks(854),
                             CreatedUser = 1,
                             Email = "user@template.com",
                             IsActive = true,
@@ -72401,7 +72352,7 @@ namespace Template.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2022, 12, 16, 22, 9, 43, 159, DateTimeKind.Local).AddTicks(1579),
+                            CreatedDate = new DateTime(2022, 12, 15, 23, 3, 12, 316, DateTimeKind.Local).AddTicks(855),
                             CreatedUser = 1,
                             Email = "seller@template.com",
                             IsActive = true,
@@ -72569,7 +72520,7 @@ namespace Template.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Template.Domain.Entities.Sales.Opportunity", "Opportunity")
-                        .WithMany("Annotations")
+                        .WithMany("Note")
                         .HasForeignKey("OpportunityId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -72599,9 +72550,9 @@ namespace Template.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Template.Domain.Entities.Sales.OpportunityType", "OpportunityType")
+                    b.HasOne("Template.Domain.Entities.Sales.OpportunityType", "OpportunityTitle")
                         .WithMany()
-                        .HasForeignKey("OpportunityTypeId")
+                        .HasForeignKey("OpportunityTitleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -72629,7 +72580,7 @@ namespace Template.Data.Migrations
 
                     b.Navigation("Contact");
 
-                    b.Navigation("OpportunityType");
+                    b.Navigation("OpportunityTitle");
 
                     b.Navigation("Order");
 
@@ -72721,7 +72672,7 @@ namespace Template.Data.Migrations
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.Opportunity", b =>
                 {
-                    b.Navigation("Annotations");
+                    b.Navigation("Note");
                 });
 
             modelBuilder.Entity("Template.Domain.Entities.Sales.Order", b =>

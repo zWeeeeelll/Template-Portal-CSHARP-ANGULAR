@@ -24,8 +24,8 @@ namespace Template.Domain.Entities.Sales
         public int ConceptId { get; set; }
         public virtual Concept Concept { get; set; }
 
-        public int OpportunityTitleId { get; set; }
-        public virtual OpportunityType OpportunityTitle { get; set; }
+        public int OpportunityTypeId { get; set; }
+        public virtual OpportunityType OpportunityType { get; set; }
 
         public int UserId { get; set; }
         public virtual Users User { get; set; }
@@ -42,6 +42,6 @@ namespace Template.Domain.Entities.Sales
         public int ContactId { get; set; }
         public virtual Contact Contact { get; set; }
 
-        public ICollection<Annotation> Note { get; set; }
+        public ICollection<Annotation> Annotations { get; set; }
     }
 }

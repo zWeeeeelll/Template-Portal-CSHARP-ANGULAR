@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Template.Domain.Entities.Location;
+using Template.Domain.Entities.Sales;
 
 namespace Template.Domain.Entities.Person
 {
@@ -12,7 +13,8 @@ namespace Template.Domain.Entities.Person
         public string Name { get; set; }
         public string BusinessName { get; set; }
 
-        public string Phone { get; set; }
+        public string PhoneCode { get; set; }
+        public string PhoneNumber { get; set; }
         public string Email { get; set; }
 
 
@@ -21,5 +23,7 @@ namespace Template.Domain.Entities.Person
 
 
         public virtual ICollection<Contact> Contacts { get; set; }
+
+
     }
 }

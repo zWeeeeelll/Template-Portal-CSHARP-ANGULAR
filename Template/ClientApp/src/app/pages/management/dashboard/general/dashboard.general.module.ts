@@ -3,20 +3,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard.component';
+import { DashboardGeneralRoutingModule } from './dashboard.general-routing.module';
 import { ChartModule } from 'primeng/chart';
+import { DashboardGeneralComponent } from './dashboard.general.component';
 
 
 
 @NgModule({
     imports: [
       CommonModule,
-      DashboardRoutingModule,
+      DashboardGeneralRoutingModule,
       FormsModule,
       ChartModule,
       MenuModule
     ],
-    declarations: [DashboardComponent]
+    declarations: [DashboardGeneralComponent]
   })
-  export class DashboardModule { }
+  export class DashboardGeneralModule { }

@@ -9,5 +9,8 @@ namespace Template.Domain.Entities.Production
     public class ProductSubCategory : Entity
     {
         public string Name { get; set; }
+
+        public int ProductCategoryId { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
     }
 }

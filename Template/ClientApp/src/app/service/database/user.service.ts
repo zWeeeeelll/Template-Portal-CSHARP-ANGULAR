@@ -36,4 +36,12 @@ export class UserService {
   update(user: User): Observable<User> {    
     return this.http.put<User>("https://localhost:5001" + this._module, user);
   }
+
+  updateAccess(user: User): Observable<Boolean> {    
+    return this.http.put<Boolean>("https://localhost:5001" + this._module + "/updateaccess", user);
+  }
+
+  deactiveAccess(userId: Number): Observable<User> {    
+    return this.http.get<User>("https://localhost:5001" + this._module + "/deactivate/" + userId);
+  }
 }

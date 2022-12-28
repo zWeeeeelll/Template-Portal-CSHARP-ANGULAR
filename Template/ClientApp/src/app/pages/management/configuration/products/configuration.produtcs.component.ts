@@ -1,4 +1,4 @@
-import { Product } from './../../../api/mock/product';
+import { Product } from '../../../../api/mock/product';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/database/user.service';

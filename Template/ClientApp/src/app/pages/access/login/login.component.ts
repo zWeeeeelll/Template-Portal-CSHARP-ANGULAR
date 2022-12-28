@@ -1,8 +1,8 @@
-import { AppMenuComponent } from './../../app.menu.component';
+import { AppMenuComponent } from '../../../app.menu.component';
 import { Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ConfigService } from '../../service/app.config.service';
-import { AppConfig } from '../../api/models/appconfig';
+import { ConfigService } from '../../../service/app.config.service';
+import { AppConfig } from '../../../api/models/appconfig';
 import { Subscription } from 'rxjs';
 import {MessageService} from 'primeng/api';
 import { UserLogin } from 'src/app/api/models/userLogin';
